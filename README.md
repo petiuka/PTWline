@@ -49,7 +49,7 @@ Websites to obfuscate:
 - New password
 - Randomize new password
 - Logout on first launch
-- Anti social (automatically redirects from social page cuz data grabbing only from game website)
+- Anti social (automatically redirects from social page)
 
 - [Kirka](kirka.io)
 - [Krunker](krunker.io)
